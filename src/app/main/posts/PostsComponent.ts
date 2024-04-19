@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-posts',
   templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  styleUrls: ['./posts.component.scss'],
 })
 export class PostsComponent implements OnInit {
   isActive = false;
@@ -20,7 +20,11 @@ export class PostsComponent implements OnInit {
   bodyComment!: BodyInterface[];
 
   AddUserComment: FormGroup;
-  constructor(private fb: FormBuilder, private apiGetPostService: ApiGetpostService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private apiGetPostService: ApiGetpostService,
+    private router: Router
+  ) {
     this.AddUserComment = this.fb.group({
       authorsName: ['', [Validators.required]],
       title: ['', [Validators.required]],
@@ -42,28 +46,28 @@ export class PostsComponent implements OnInit {
     return user ? user.name : '';
   }
 
-  goToLocalComment (postId: number): void {
+  goToLocalComment(postId: number): void {
     this.router.navigate(['/posts', postId]);
   }
   // form submit
   onSubmit(userFormValue: any) {
     this.users = [
-    {
-      id: this.bodyComment.length + 1,
-      name: userFormValue.authorsName,
-      username: '',
-    },
-    ...this.users,
-  ];
-  this.bodyComment = [
-    {
-      userId: this.bodyComment.length + 1,
-      id: this.bodyComment.length + 1,
-      title: userFormValue.title,
-      body: userFormValue.body,
-    },
-    ...this.bodyComment,
-  ];
+      {
+        id: this.bodyComment.length + 1,
+        name: userFormValue.authorsName,
+        username: '',
+      },
+      ...this.users,
+    ];
+    this.bodyComment = [
+      {
+        userId: this.bodyComment.length + 1,
+        id: this.bodyComment.length + 1,
+        title: userFormValue.title,
+        body: userFormValue.body,
+      },
+      ...this.bodyComment,
+    ];
   }
   get formAuthor() {
     return this.AddUserComment.get('authorsName');

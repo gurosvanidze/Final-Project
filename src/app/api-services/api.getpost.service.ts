@@ -6,20 +6,25 @@ import { Observable, forkJoin } from 'rxjs';
 import { UsercommentInterface } from '../interfaces/usercomment.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiGetpostService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<UserInterface[]> {
-    return this.http.get<UserInterface[]>('https://jsonplaceholder.typicode.com/users');
+    return this.http.get<UserInterface[]>(
+      'https://jsonplaceholder.typicode.com/users'
+    );
   }
   getAllBody(): Observable<BodyInterface[]> {
-    return this.http.get<BodyInterface[]>('https://jsonplaceholder.typicode.com/posts');
+    return this.http.get<BodyInterface[]>(
+      'https://jsonplaceholder.typicode.com/posts'
+    );
   }
   getAllUserComment(): Observable<UsercommentInterface[]> {
-    return this.http.get<UsercommentInterface[]>('https://jsonplaceholder.typicode.com/posts/1/comments');
+    return this.http.get<UsercommentInterface[]>(
+      'https://jsonplaceholder.typicode.com/posts/1/comments'
+    );
   }
 
   addUserNewComment(userComment: {
@@ -34,9 +39,12 @@ export class ApiGetpostService {
       name: userComment.name,
       body: userComment.body,
     };
-    return this.http.post('https://jsonplaceholder.typicode.com/posts/1/comments', dataComments);
+    return this.http.post(
+      'https://jsonplaceholder.typicode.com/posts/1/comments',
+      dataComments
+    );
   }
-  
+
   addNewUser(newPosts: {
     userName: string;
     id: number;
@@ -55,8 +63,14 @@ export class ApiGetpostService {
       id: newPosts.userId,
     };
 
-    const userDetectable = this.http.post('https://jsonplaceholder.typicode.com/users', userData);
-    const postDetectable = this.http.post('https://jsonplaceholder.typicode.com/posts', dataUserBody);
+    const userDetectable = this.http.post(
+      'https://jsonplaceholder.typicode.com/users',
+      userData
+    );
+    const postDetectable = this.http.post(
+      'https://jsonplaceholder.typicode.com/posts',
+      dataUserBody
+    );
 
     return forkJoin([userDetectable, postDetectable]);
   }

@@ -1,41 +1,78 @@
-<hr>
+<hr />
 <div class="page-background">
-    <div class="wrapper">
-        <div class="editandnewposts">
-            <div class="edit">
-                <img src="../../../../assets/leftarrow.png" alt="arrow" routerLink="/posts">
-                <h2>Title</h2>
-                <hr class="secondhr">
-                <h3>{{ postTitle }}</h3>
-                <h2>Body</h2>
-                <hr class="secondhr">
-                <h3>{{ postBody }}</h3>
-                <button type="submit">Edit</button>
-                <div class="modal"></div>
+  <div class="wrapper">
+    <div class="editandnewposts">
+      <div class="edit">
+        <img
+          src="../../../../assets/leftarrow.png"
+          alt="arrow"
+          routerLink="/posts"
+        />
+        <h2>Title</h2>
+        <hr class="secondhr" />
+        <h3>{{ inPostTitle }}</h3>
+        <h2>Body</h2>
+        <hr class="secondhr" />
+        <h3>{{ inPostBody }}</h3>
+        <button type="submit">Edit</button>
+        <div class="modal"></div>
+      </div>
+      <div class="postscomments">
+        <div class="comments">
+          <div class="commentcontainer" *ngFor="let comment of userComments">
+            <img src="../../../../assets/user-image.jpg" alt="user photo" />
+            <div class="usercomment">
+              <h4>{{ comment.name }}</h4>
+              <p>{{ comment.body }}</p>
             </div>
-            <div class="postscomments">
-                <div class="comments">
-                <div class="commentcontainer" *ngFor="let comment of userComments">
-                    <img src="../../../../assets/user-image.jpg" alt="user photo">
-                    <div class="usercomment">
-                        <h4>{{ comment.name }}</h4>
-                        <p>{{ comment.body }}</p>
-                    </div>
-                </div>
-                </div>
-                <h2 class="addcom">Add Comment</h2>
-                <div class="newComments">
-                    <img src="../../../../assets/user-image.jpg" alt="user image">
-                    <div class="newComment">
-                        <h3>Name</h3>
-                        <input type="text">
-                        <hr>
-                        <h4>Body</h4>
-                        <input type="text">
-                        <hr>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <h2 class="addcom">Add Comment</h2>
+        <div class="newComments">
+          <img src="../../../../assets/user-image.jpg" alt="user image" />
+          <div class="newComment">
+            <form
+              [formGroup]="userCommentForm"
+              (submit)="
+                addNewUserComments(userName.value, commentsInBody.value)
+              "
+            >
+              <h3>Name</h3>
+              <input type="text" formControlName="username" #userName />
+              <hr />
+              <div
+                class="error"
+                *ngIf="formUserName?.invalid && formUserName?.touched"
+              >
+                <p *ngIf="formUserName?.errors?.['required']">
+                  Name is <span>required</span>
+                </p>
+              </div>
+              <h4>Body</h4>
+              <input
+                type="text"
+                formControlName="bodyComment"
+                #commentsInBody
+              />
+              <hr />
+              <div
+                class="error"
+                *ngIf="formBodyComment?.invalid && formBodyComment?.touched"
+              >
+                <p *ngIf="formBodyComment?.errors?.['required']">
+                  Comment is <span>required</span>
+                </p>
+              </div>
+              <input
+                type="submit"
+                value="Add"
+                class="added"
+                [disabled]="userCommentForm.invalid"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

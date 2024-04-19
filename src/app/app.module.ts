@@ -22,15 +22,15 @@ import { UsercommentComponent } from './main/posts/usercomment/usercomment.compo
     AlbumsComponent,
     TodosComponent,
     PhotosComponent,
-    UsercommentComponent
+    UsercommentComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -29,10 +29,10 @@ tr:nth-child(odd) {
   background-color: #dddddd;
 }
 tr:nth-child(odd):hover {
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 tr:nth-child(odd) {
-transition: box-shadow 0.4s ease-in-out;
+  transition: box-shadow 0.4s ease-in-out;
 }
 tr:nth-child(even):hover {
   box-shadow: 7px 0 7px -4px rgb(2, 25, 51), -7px 0 8px -4px rgba(2, 25, 51);
