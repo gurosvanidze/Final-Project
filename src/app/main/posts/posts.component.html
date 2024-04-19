@@ -1,0 +1,59 @@
+<hr/>
+<div class="page-background">
+<div class="wrapper">
+  <div class="toggle">
+    <button class="show-hide" (click)="toggleActive()" [ngClass]="{'active': isActive}">Add Post</button>
+    <form *ngIf="isActive" class="addpost" (ngSubmit)="onSubmit(AddUserComment.value)" [formGroup]="AddUserComment">
+      <div class="comment">
+        <h4>Post Author</h4>
+        <input type="text" formControlName="authorsName">
+        <div
+          class="error"
+          *ngIf="formAuthor?.invalid && formAuthor?.touched"
+        >
+          <p *ngIf="formAuthor?.errors?.['required']">
+            Authors name is <span>required</span>
+          </p>
+        </div>
+      </div>
+      <div class="comment">
+        <h4>Title</h4>
+        <input type="text" formControlName="title">
+        <div
+          class="error"
+          *ngIf="formTitle?.invalid && formTitle?.touched"
+        >
+          <p *ngIf="formTitle?.errors?.['required']">
+            Title is <span>required</span>
+          </p>
+        </div>
+      </div>
+      <div class="comment">
+        <h4>Body</h4>
+        <input type="text" formControlName="body">
+        <div
+          class="error"
+          *ngIf="formComment?.invalid && formComment?.touched"
+        >
+          <p *ngIf="formComment?.errors?.['required']">
+            Comment is <span>required</span>
+          </p>
+        </div>
+      </div>
+        <input type="submit" value="Add" class="add" [disabled]="AddUserComment.invalid">
+    </form>
+  </div>
+  <table>
+    <tr>
+    <th>POST'S USER</th>
+    <th>TITLE</th>
+    <th>BODY</th>
+  </tr>
+  <tr *ngFor="let body of bodyComment" (click)="goToLocalComment(body.id)">
+    <td>{{ getUserName(body.userId) }}</td>
+    <td>{{ body.title }}</td>
+    <td>{{ body.body }}</td>
+  </tr>
+  </table>
+</div>
+</div>

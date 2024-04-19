@@ -1,0 +1,41 @@
+<hr>
+<div class="page-background">
+    <div class="wrapper">
+        <div class="editandnewposts">
+            <div class="edit">
+                <img src="../../../../assets/leftarrow.png" alt="arrow" routerLink="/posts">
+                <h2>Title</h2>
+                <hr class="secondhr">
+                <h3>{{ postTitle }}</h3>
+                <h2>Body</h2>
+                <hr class="secondhr">
+                <h3>{{ postBody }}</h3>
+                <button type="submit">Edit</button>
+                <div class="modal"></div>
+            </div>
+            <div class="postscomments">
+                <div class="comments">
+                <div class="commentcontainer" *ngFor="let comment of userComments">
+                    <img src="../../../../assets/user-image.jpg" alt="user photo">
+                    <div class="usercomment">
+                        <h4>{{ comment.name }}</h4>
+                        <p>{{ comment.body }}</p>
+                    </div>
+                </div>
+                </div>
+                <h2 class="addcom">Add Comment</h2>
+                <div class="newComments">
+                    <img src="../../../../assets/user-image.jpg" alt="user image">
+                    <div class="newComment">
+                        <h3>Name</h3>
+                        <input type="text">
+                        <hr>
+                        <h4>Body</h4>
+                        <input type="text">
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

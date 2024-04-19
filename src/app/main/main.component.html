@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <header>
+    <div class="navigation">
+      <img
+        src="../../assets/logo.png"
+        alt="logo"
+        class="logo"
+        routerLink="/main"
+      />
+      <nav>
+        <ul>
+          <li routerLink="/posts" routerLinkActive="active">posts</li>
+          <li routerLink="/albums" routerLinkActive="active">albums</li>
+          <li routerLink="/todos" routerLinkActive="active">todos</li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</div>
+<router-outlet></router-outlet>

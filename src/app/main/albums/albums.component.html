@@ -1,0 +1,17 @@
+<hr />
+<div class="page-background">
+  <div class="wrapper">
+    <table>
+      <tr>
+        <th>ALBUM'S USER</th>
+        <th>TITLE</th>
+        <th>NUMBER OF PHOTOS</th>
+      </tr>
+      <tr *ngFor="let album of albums" (click)="goToLocalPhotos(album.id)">
+        <td>{{ getUserName(album.userId) }}</td>
+        <td>{{ album.title }}</td>
+        <td>{{ sumOfPhotos[album.id] }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

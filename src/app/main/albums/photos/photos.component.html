@@ -1,0 +1,9 @@
+<hr />
+<div class="page-background">
+  <div class="wrapper">
+    <div *ngFor="let photo of variableForPhotos" class="album">
+      <img [src]="photo.url" />
+      <h4><span>Title: </span>{{ photo.title }}</h4>
+    </div>
+  </div>
+</div>

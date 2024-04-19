@@ -1,0 +1,16 @@
+<hr />
+<div class="page-background">
+  <div class="wrapper">
+    <div class="todos" *ngFor="let todo of todos">
+      <div class="usercomment"><span>Title:</span> {{ todo.title }}</div>
+      <div *ngIf="todo.completed === false" class="completed">
+        <span>Completion:</span
+        ><img src="../../../assets/red-x.svg" alt="red x" />
+      </div>
+      <div *ngIf="todo.completed === true" class="completed">
+        <span>Completion:</span
+        ><img src="../../../assets/check-mark.svg" alt="green mark" />
+      </div>
+    </div>
+  </div>
+</div>
