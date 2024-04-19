@@ -27,6 +27,10 @@ export class ApiGetpostService {
     );
   }
 
+  getAllUserComments(id: number): Observable<UsercommentInterface[]> {
+    return this.http.get<UsercommentInterface[]>(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
+  }
+
   addUserNewComment(userComment: {
     postId: number;
     id: number;

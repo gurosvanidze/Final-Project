@@ -19,9 +19,9 @@ export class PhotosComponent implements OnInit {
 
   ngOnInit(): void {
     let presentUrl = window.location.href;
-    let matches = presentUrl.match(/\d+$/);
-    if (matches) {
-      this.discernmentNumber = parseInt(matches[0], 10);
+    let equal = presentUrl.match(/\d+$/);
+    if (equal) {
+      this.discernmentNumber = parseInt(equal[0], 10);
     }
     this.ForAllIdPhotos = this.apiAlbumsService.getCountPhoto(
       this.discernmentNumber

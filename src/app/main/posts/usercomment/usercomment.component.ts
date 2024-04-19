@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ApiGetpostService } from 'src/app/api-services/api.getpost.service';
 import { BodyInterface } from 'src/app/interfaces/title.body.interface';
 import { UsercommentInterface } from 'src/app/interfaces/usercomment.interface';
@@ -14,6 +15,9 @@ import { UsercommentInterface } from 'src/app/interfaces/usercomment.interface';
 export class UsercommentComponent implements OnInit {
   userComments!: UsercommentInterface[];
   userBodyData!: BodyInterface[];
+
+  userComment: Observable<UsercommentInterface[]> | null = null;
+  userIdComment: UsercommentInterface[] = [];
 
   analyseNumber!: number;
   postsId!: number;
@@ -35,6 +39,17 @@ export class UsercommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let presentCommentsUrl = window.location.href;
+    let equal = presentCommentsUrl.match(/\d+$/);
+    if (equal) {
+      this.analyseNumber = parseInt(equal[0], 10);
+    }
+    this.userComment = this.apiGetPostService.getAllUserComments(this.analyseNumber);
+    this.userComment.subscribe((userIdComments) => {
+      this.userIdComment = userIdComments;
+    },
+  );
+
     this.apiGetPostService.getAllUserComment().subscribe((userComments) => {
       this.userComments = userComments;
     });
@@ -81,7 +96,7 @@ export class UsercommentComponent implements OnInit {
     this.apiGetPostService.addUserNewComment(newComments).subscribe({
       next: (response) => {
         console.log('Added new user and post successfully!:', response);
-        this.userComments.push(newComments);
+        this.userIdComment.push(newComments);
         this.userCommentForm.reset();
       },
       error: (error) => {

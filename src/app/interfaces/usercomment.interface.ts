@@ -1,5 +1,5 @@
 export interface UsercommentInterface {
-  postId: number;
+  postId: number | null;
   id: number;
   name: string;
   body: string;
